@@ -1,16 +1,28 @@
 {
-	"name": "chinese-chess",
-	"version": "1.0.0",
-	"description": "a chinese chess game",
-	"main": "main.js",
-	"scripts": {
-		"start": "electron .",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "MonarchFish",
-	"license": "MIT",
-	"devDependencies": {
-		"electron": "^37.0.0"
-	},
-	"packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
+  "name": "chinese-chess",
+  "version": "1.0.0",
+  "description": "a chinese chess game",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "MonarchFish",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.8.1",
+    "@electron-forge/maker-deb": "^7.8.1",
+    "@electron-forge/maker-rpm": "^7.8.1",
+    "@electron-forge/maker-squirrel": "^7.8.1",
+    "@electron-forge/maker-zip": "^7.8.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.8.1",
+    "@electron-forge/plugin-fuses": "^7.8.1",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^37.0.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1"
+  }
 }
