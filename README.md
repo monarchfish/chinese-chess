@@ -19,12 +19,14 @@ A Chinese Chess (Xiangqi) game built with Electron, React, and TypeScript.
 ### Setup
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd chinese-chess
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -34,6 +36,7 @@ npm install
 ### Development
 
 Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -56,6 +59,7 @@ npm run build:linux
 ## Development Plan
 
 ### Phase 1: Basic UI and Core Game Logic
+
 - [x] Project setup with Electron + React + TypeScript
 - [ ] Implement basic chess board layout
 - [ ] Add essential UI components (start button, restart, turn indicator)
@@ -63,6 +67,7 @@ npm run build:linux
 - [ ] Create game state management
 
 ### Phase 2: Local 1v1 Player vs Player
+
 - [ ] Implement mouse-based piece movement
 - [ ] Add move validation (legal moves, occupied squares)
 - [ ] Implement win/loss detection
@@ -73,23 +78,27 @@ npm run build:linux
   - All other traditional Xiangqi movement rules
 
 ### Phase 3: Enhanced Interface
+
 - [ ] Add move history display
 - [ ] Implement separate timers for each player
 - [ ] Show captured pieces for each side
 - [ ] Improve UI/UX with additional shadcn/ui components
 
 ### Phase 4: AI Opponent
+
 - [ ] Implement AI player
 - [ ] Add difficulty levels
 - [ ] Create AI move calculation algorithms
 
 ### Phase 5: Online Multiplayer
+
 - [ ] Add online matchmaking
 - [ ] Implement real-time game synchronization
 - [ ] Add chat functionality
 - [ ] Optimize network performance
 
 ### Phase 6: Advanced Features
+
 - [ ] Add game statistics and analytics
 - [ ] Implement tutorial mode
 - [ ] Add sound effects and animations
