@@ -81,10 +81,10 @@ function App(): React.JSX.Element {
   }
 
   return (
-    <div className="flex gap-4 p-4 h-screen overflow-hidden">
+    <div className="flex h-screen gap-4 overflow-hidden p-4">
       {/* 左側棋盤 */}
-      <div className="flex flex-col flex-1 rounded-2xl shadow-2xl p-6 h-full">
-        <div className="flex justify-between items-center mb-4">
+      <div className="flex h-full flex-1 flex-col rounded-2xl p-6 shadow-2xl">
+        <div className="mb-4 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-800">棋盤</h2>
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-600">遊戲時間:</span>
@@ -99,7 +99,7 @@ function App(): React.JSX.Element {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1000 1100"
-            className="w-full h-full max-h-full"
+            className="h-full max-h-full w-full"
           >
             {/* Board background */}
             <rect width="1000" height="1100" fill="#f0c78a" />
@@ -692,17 +692,17 @@ function App(): React.JSX.Element {
       {/* 右側資訊區 */}
       <div className="w-80 space-y-4">
         {/* 當前玩家 */}
-        <div className="bg-white rounded-2xl shadow-2xl p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">當前回合</h3>
+        <div className="rounded-2xl bg-white p-6 shadow-2xl">
+          <h3 className="mb-4 text-xl font-bold text-gray-800">當前回合</h3>
           <div
-            className={`flex items-center justify-center p-4 rounded-xl ${
+            className={`flex items-center justify-center rounded-xl p-4 ${
               currentPlayer === 'red'
-                ? 'bg-red-50 border-2 border-red-200'
-                : 'bg-gray-50 border-2 border-gray-200'
+                ? 'border-2 border-red-200 bg-red-50'
+                : 'border-2 border-gray-200 bg-gray-50'
             }`}
           >
             <div
-              className={`w-4 h-4 rounded-full mr-3 ${
+              className={`mr-3 h-4 w-4 rounded-full ${
                 currentPlayer === 'red' ? 'bg-red-500' : 'bg-gray-800'
               }`}
             ></div>
@@ -717,17 +717,17 @@ function App(): React.JSX.Element {
         </div>
 
         {/* 移動紀錄 */}
-        <div className="bg-white rounded-2xl shadow-2xl p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">移動紀錄</h3>
-          <div className="max-h-64 overflow-y-auto space-y-2">
+        <div className="rounded-2xl bg-white p-6 shadow-2xl">
+          <h3 className="mb-4 text-xl font-bold text-gray-800">移動紀錄</h3>
+          <div className="max-h-64 space-y-2 overflow-y-auto">
             {moveHistory.map((move) => (
               <div
                 key={move.id}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                className="flex items-center justify-between rounded-lg bg-gray-50 p-3"
               >
                 <div className="flex items-center">
                   <div
-                    className={`w-3 h-3 rounded-full mr-2 ${
+                    className={`mr-2 h-3 w-3 rounded-full ${
                       move.player === 'red' ? 'bg-red-500' : 'bg-gray-800'
                     }`}
                   ></div>
@@ -742,19 +742,19 @@ function App(): React.JSX.Element {
         </div>
 
         {/* 被吃掉的棋子 */}
-        <div className="bg-white rounded-2xl shadow-2xl p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">被吃掉的棋子</h3>
+        <div className="rounded-2xl bg-white p-6 shadow-2xl">
+          <h3 className="mb-4 text-xl font-bold text-gray-800">被吃掉的棋子</h3>
           <div className="space-y-4">
             {/* 紅方被吃掉的棋子 */}
             <div>
-              <h4 className="text-sm font-semibold text-red-600 mb-2">紅方損失</h4>
+              <h4 className="mb-2 text-sm font-semibold text-red-600">紅方損失</h4>
               <div className="flex flex-wrap gap-2">
                 {capturedPieces.red.map((piece, index) => (
                   <div
                     key={index}
-                    className="w-8 h-8 bg-red-100 border border-red-300 rounded-full flex items-center justify-center"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-red-300 bg-red-100"
                   >
-                    <span className="text-red-600 text-sm font-bold">{piece}</span>
+                    <span className="text-sm font-bold text-red-600">{piece}</span>
                   </div>
                 ))}
               </div>
@@ -762,14 +762,14 @@ function App(): React.JSX.Element {
 
             {/* 黑方被吃掉的棋子 */}
             <div>
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">黑方損失</h4>
+              <h4 className="mb-2 text-sm font-semibold text-gray-700">黑方損失</h4>
               <div className="flex flex-wrap gap-2">
                 {capturedPieces.black.map((piece, index) => (
                   <div
                     key={index}
-                    className="w-8 h-8 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-gray-100"
                   >
-                    <span className="text-gray-700 text-sm font-bold">{piece}</span>
+                    <span className="text-sm font-bold text-gray-700">{piece}</span>
                   </div>
                 ))}
               </div>
@@ -778,30 +778,30 @@ function App(): React.JSX.Element {
         </div>
 
         {/* 遊戲控制 */}
-        <div className="bg-white rounded-2xl shadow-2xl p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">遊戲控制</h3>
+        <div className="rounded-2xl bg-white p-6 shadow-2xl">
+          <h3 className="mb-4 text-xl font-bold text-gray-800">遊戲控制</h3>
           <div className="space-y-3">
             <button
               onClick={handleRestart}
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
+              className="w-full rounded-lg bg-blue-500 px-4 py-3 font-semibold text-white transition-colors hover:bg-blue-600"
             >
               重新開始
             </button>
             <button
               onClick={handleUndo}
-              className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
+              className="w-full rounded-lg bg-yellow-500 px-4 py-3 font-semibold text-white transition-colors hover:bg-yellow-600"
             >
               悔棋
             </button>
             <button
               onClick={handleSaveGame}
-              className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
+              className="w-full rounded-lg bg-green-500 px-4 py-3 font-semibold text-white transition-colors hover:bg-green-600"
             >
               保存遊戲
             </button>
             <button
               onClick={handleLoadGame}
-              className="w-full bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
+              className="w-full rounded-lg bg-gray-500 px-4 py-3 font-semibold text-white transition-colors hover:bg-gray-600"
             >
               載入遊戲
             </button>
@@ -809,8 +809,8 @@ function App(): React.JSX.Element {
         </div>
 
         {/* 遊戲統計 */}
-        <div className="bg-white rounded-2xl shadow-2xl p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">遊戲統計</h3>
+        <div className="rounded-2xl bg-white p-6 shadow-2xl">
+          <h3 className="mb-4 text-xl font-bold text-gray-800">遊戲統計</h3>
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-gray-600">總步數:</span>
