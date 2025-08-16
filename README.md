@@ -13,7 +13,7 @@ A Chinese Chess (Xiangqi) game built with Electron, React, and TypeScript.
 
 ### Prerequisites
 
-- Node.js LTS/Iron (v20 or higher)
+- Node.js v22 LTS
 - npm
 
 ### Setup
