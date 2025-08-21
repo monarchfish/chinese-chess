@@ -1,13 +1,19 @@
-interface ChessProps {
-  position: {
-    x: number
-    y: number
-  }
-  piece: string
-  player: 'red' | 'black'
+import { ROLE_MAP } from '@renderer/constants'
+import { Chess as ChessType } from '@renderer/types'
+
+interface ChessProps extends ChessType {
+  onClick: (id: ChessType['id']) => void
 }
 
-function Chess({ position, piece, player }: ChessProps): React.JSX.Element {
+function Chess({
+  id,
+  position,
+  role,
+  player,
+  isSelected,
+  isMovable,
+  onClick
+}: ChessProps): React.JSX.Element {
   const colorMap = {
     fill: {
       red: '#1e293b',
@@ -30,7 +36,20 @@ function Chess({ position, piece, player }: ChessProps): React.JSX.Element {
   return (
     <g
       transform={transform}
-      className="cursor-pointer drop-shadow-[0_4px_4px_#000000] transition-transform duration-200 select-none hover:drop-shadow-[0_4px_4px_#fbbf24]"
+      className={[
+        'cursor-pointer',
+        'drop-shadow-[0_4px_4px_#000000]',
+        'transition-transform',
+        'duration-200',
+        'select-none',
+        isSelected && 'drop-shadow-[0_4px_4px_#fbbf24]',
+        isMovable && 'hover:drop-shadow-[0_4px_4px_#fbbf24]'
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      onClick={() => {
+        onClick(id)
+      }}
     >
       <circle
         r="40"
@@ -46,7 +65,7 @@ function Chess({ position, piece, player }: ChessProps): React.JSX.Element {
         textAnchor="middle"
         dominantBaseline="middle"
       >
-        {piece}
+        {ROLE_MAP[player][role]}
       </text>
     </g>
   )
