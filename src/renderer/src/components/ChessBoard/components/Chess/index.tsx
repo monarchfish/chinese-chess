@@ -22,11 +22,14 @@ function Chess({ position, piece, player }: ChessProps): React.JSX.Element {
       black: '#ffffff'
     }
   }
+
+  const x = position.x * 100 + 100
+  const y = position.y * 100 + 100
+  const transform = `translate(${x}, ${y})`
+
   return (
-    <>
+    <g transform={transform} className="cursor-pointer select-none">
       <circle
-        cx={(position.x + 1) * 100}
-        cy={(position.y + 1) * 100}
         r="40"
         fill={colorMap.fill[player]}
         stroke={colorMap.stroke[player]}
@@ -34,17 +37,15 @@ function Chess({ position, piece, player }: ChessProps): React.JSX.Element {
         style={{ filter: 'url(#glow)' }}
       />
       <text
-        x={(position.x + 1) * 100}
-        y={(position.y + 1) * 100 + 5}
+        y={5}
         fontSize="50"
         fill={colorMap.text[player]}
         textAnchor="middle"
         dominantBaseline="middle"
-        style={{ textShadow: '0 0 10px rgba(14, 165, 233, 0.8)' }}
       >
         {piece}
       </text>
-    </>
+    </g>
   )
 }
 
