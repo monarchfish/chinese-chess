@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ChessBoard from './components/ChessBoard'
 import { INITIAL_CHESS_LIST } from './constants'
 import { Chess, Player } from './types'
+import { Button } from '@renderer/components/ui/button'
 
 function App(): React.JSX.Element {
   const [currentPlayer, setCurrentPlayer] = useState<Player>(Player.RED)
@@ -55,12 +56,9 @@ function App(): React.JSX.Element {
 
         <div className="p-4">
           <div className="space-y-3">
-            <button
-              onClick={handleRestart}
-              className="w-full rounded-xl border border-cyan-400/30 bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-3 font-semibold text-white shadow-lg shadow-cyan-500/25 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:from-cyan-600 hover:to-blue-600"
-            >
+            <Button onClick={handleRestart} className="w-full">
               重新開始
-            </button>
+            </Button>
           </div>
         </div>
       </div>
