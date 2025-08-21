@@ -28,7 +28,10 @@ function Chess({ position, piece, player }: ChessProps): React.JSX.Element {
   const transform = `translate(${x}, ${y})`
 
   return (
-    <g transform={transform} className="cursor-pointer select-none">
+    <g
+      transform={transform}
+      className="cursor-pointer drop-shadow-[0_4px_4px_#000000] transition-transform duration-200 select-none hover:drop-shadow-[0_4px_4px_#fbbf24]"
+    >
       <circle
         r="40"
         fill={colorMap.fill[player]}
