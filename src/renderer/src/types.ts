@@ -21,6 +21,4 @@ export interface Chess {
   }
   role: Role
   player: Player
-  isSelected: boolean
-  isMovable: boolean
 }

@@ -1,8 +1,11 @@
 import { ROLE_MAP } from '@renderer/constants'
 import { Chess as ChessType } from '@renderer/types'
+import { cn } from '@renderer/lib/utils'
 
 interface ChessProps extends ChessType {
   onClick: (id: ChessType['id']) => void
+  isSelected: boolean
+  isMovable: boolean
 }
 
 function Chess({
@@ -36,17 +39,15 @@ function Chess({
   return (
     <g
       transform={transform}
-      className={[
+      className={cn(
         'cursor-pointer',
         'drop-shadow-[0_4px_4px_#000000]',
         'transition-transform',
         'duration-200',
         'select-none',
-        isSelected && 'drop-shadow-[0_4px_4px_#fbbf24]',
-        isMovable && 'hover:drop-shadow-[0_4px_4px_#fbbf24]'
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        isMovable && !isSelected && 'hover:drop-shadow-[0_4px_4px_#fbbf24]',
+        isSelected && 'drop-shadow-[0_4px_4px_blue]'
+      )}
       onClick={() => {
         onClick(id)
       }}
