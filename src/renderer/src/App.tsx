@@ -22,6 +22,19 @@ function App(): React.JSX.Element {
     }
   }
 
+  const handleBoardClick = (position: Chess['position']): void => {
+    if (selectedChess) {
+      const newChessList = chessList.map((chess) => {
+        if (chess.id === selectedChess.id) {
+          return { ...chess, position }
+        }
+        return chess
+      })
+      setChessList(newChessList)
+      setSelectedChess(null)
+    }
+  }
+
   return (
     <div className="relative flex h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
       <div className="h-full flex-1 p-4">
@@ -29,6 +42,7 @@ function App(): React.JSX.Element {
           chessList={chessList}
           onChessClick={handleChessClick}
           selectedChess={selectedChess}
+          onBoardClick={handleBoardClick}
         />
       </div>
 
