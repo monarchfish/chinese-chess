@@ -14,15 +14,15 @@ export const INITIAL_CHESS_LIST: Chess[] = [
     player: Player.BLACK
   },
   {
-    id: 'black-knight-one',
+    id: 'black-HORSE-one',
     position: { x: 1, y: 0 },
-    role: Role.KNIGHT,
+    role: Role.HORSE,
     player: Player.BLACK
   },
   {
-    id: 'black-knight-two',
+    id: 'black-HORSE-two',
     position: { x: 7, y: 0 },
-    role: Role.KNIGHT,
+    role: Role.HORSE,
     player: Player.BLACK
   },
   {
@@ -111,15 +111,15 @@ export const INITIAL_CHESS_LIST: Chess[] = [
     player: Player.RED
   },
   {
-    id: 'red-knight-one',
+    id: 'red-HORSE-one',
     position: { x: 1, y: 9 },
-    role: Role.KNIGHT,
+    role: Role.HORSE,
     player: Player.RED
   },
   {
-    id: 'red-knight-two',
+    id: 'red-HORSE-two',
     position: { x: 7, y: 9 },
-    role: Role.KNIGHT,
+    role: Role.HORSE,
     player: Player.RED
   },
   {
@@ -199,7 +199,7 @@ export const INITIAL_CHESS_LIST: Chess[] = [
 export const ROLE_MAP = {
   [Player.RED]: {
     [Role.ROOK]: '俥',
-    [Role.KNIGHT]: '傌',
+    [Role.HORSE]: '傌',
     [Role.ELEPHANT]: '相',
     [Role.ADVISOR]: '仕',
     [Role.KING]: '帥',
@@ -208,7 +208,7 @@ export const ROLE_MAP = {
   },
   [Player.BLACK]: {
     [Role.ROOK]: '車',
-    [Role.KNIGHT]: '馬',
+    [Role.HORSE]: '馬',
     [Role.ELEPHANT]: '象',
     [Role.ADVISOR]: '士',
     [Role.KING]: '將',

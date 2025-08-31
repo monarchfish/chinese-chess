@@ -6,7 +6,7 @@ export enum Player {
 export enum Role {
   PAWN = 'pawn', // 兵/卒
   ROOK = 'rook', // 車/俥
-  KNIGHT = 'knight', // 馬/傌
+  HORSE = 'horse', // 馬/傌
   ELEPHANT = 'elephant', // 象/相
   ADVISOR = 'advisor', // 士/仕
   KING = 'king', // 將/帥

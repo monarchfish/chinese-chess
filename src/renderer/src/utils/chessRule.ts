@@ -50,7 +50,7 @@ export const checkChessRule = ({
     // 檢查是否中間有棋子
     return !checkMiddleChess(position, targetPosition, chessList)
   }
-  if (role === Role.KNIGHT) {
+  if (role === Role.HORSE) {
     // 檢查馬的規則
     // 檢查是否可以移動，馬走日字，確認目標位置是否在馬的日字位置
     // 目標的X差2Y差1或者X差1Y差2
