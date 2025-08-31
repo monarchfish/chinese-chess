@@ -3,6 +3,7 @@ import ChessBoard from './components/ChessBoard'
 import { INITIAL_CHESS_LIST, ROLE_MAP } from './constants'
 import { Chess, Player } from './types'
 import { Button } from '@renderer/components/ui/button'
+import { checkChessRule } from './utils/chessRule'
 
 function App(): React.JSX.Element {
   const [currentPlayer, setCurrentPlayer] = useState<Player>(Player.RED)
@@ -16,6 +17,9 @@ function App(): React.JSX.Element {
   }
 
   const handleChessClick = (id: Chess['id']): void => {
+    if (selectedChess) {
+      return
+    }
     const chess = chessList.find((chess) => chess.id === id)
     if (chess) {
       setSelectedChess(chess)
@@ -24,12 +28,39 @@ function App(): React.JSX.Element {
 
   const handleBoardClick = (position: Chess['position']): void => {
     if (selectedChess) {
-      const newChessList = chessList.map((chess) => {
-        if (chess.id === selectedChess.id) {
-          return { ...chess, position }
-        }
-        return chess
-      })
+      // 檢查是否有棋子在該位置
+      const targetChess = chessList.find(
+        (chess) => chess.position.x === position.x && chess.position.y === position.y
+      )
+      // 如果是自己的棋子則不動作
+      if (targetChess && targetChess.player === currentPlayer) {
+        return
+      }
+
+      // 檢查是否符合規則
+      if (
+        !checkChessRule({
+          currentChess: selectedChess,
+          targetPosition: position,
+          targetChess,
+          chessList
+        })
+      ) {
+        return
+      }
+
+      // 更新棋子位置
+      const newChessList = chessList
+
+        // 如果該位置有棋子，則移除該棋子
+        .filter((chess) => !targetChess || chess.id !== targetChess.id)
+        .map((chess) => {
+          if (chess.id === selectedChess.id) {
+            return { ...chess, position }
+          }
+          return chess
+        })
+      setCurrentPlayer(currentPlayer === Player.RED ? Player.BLACK : Player.RED)
       setChessList(newChessList)
       setSelectedChess(null)
     }
@@ -43,6 +74,7 @@ function App(): React.JSX.Element {
           onChessClick={handleChessClick}
           selectedChess={selectedChess}
           onBoardClick={handleBoardClick}
+          currentPlayer={currentPlayer}
         />
       </div>
 
