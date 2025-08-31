@@ -20,15 +20,15 @@ function Chess({
   const colorMap = {
     fill: {
       red: '#1e293b',
-      black: 'url(#pieceGradient)'
+      black: '#005d71'
     },
     stroke: {
       red: '#ef4444',
-      black: '#0ea5e9'
+      black: '#00b8db'
     },
     text: {
       red: '#ef4444',
-      black: '#ffffff'
+      black: '#00b8db'
     }
   }
 
@@ -40,16 +40,16 @@ function Chess({
     <g
       transform={transform}
       className={cn(
-        'cursor-pointer',
         'drop-shadow-[0_4px_4px_#000000]',
         'transition-transform',
         'duration-200',
         'select-none',
+        isMovable && 'cursor-pointer',
         isMovable && !isSelected && 'hover:drop-shadow-[0_4px_4px_#fbbf24]',
         isSelected && 'drop-shadow-[0_4px_4px_blue]'
       )}
       onClick={() => {
-        onClick(id)
+        isMovable && onClick(id)
       }}
     >
       <circle

@@ -1,6 +1,6 @@
 import Background from './components/Background'
 import Chess from './components/Chess'
-import { Chess as ChessType } from '../../types'
+import { Chess as ChessType, Player } from '../../types'
 import { useState } from 'react'
 
 const calculateBoardPosition = (
@@ -39,13 +39,15 @@ interface ChessBoardProps {
   onChessClick: (id: ChessType['id']) => void
   selectedChess: ChessType | null
   onBoardClick: (position: ChessType['position']) => void
+  currentPlayer: Player
 }
 
 function ChessBoard({
   chessList,
   onChessClick,
   selectedChess,
-  onBoardClick
+  onBoardClick,
+  currentPlayer
 }: ChessBoardProps): React.JSX.Element {
   const [movePosition, setMovePosition] = useState<ChessType['position'] | null>(null)
 
@@ -81,7 +83,7 @@ function ChessBoard({
           role={chess.role}
           player={chess.player}
           isSelected={chess.id === selectedChess?.id}
-          isMovable={true}
+          isMovable={currentPlayer === chess.player && !selectedChess}
           onClick={onChessClick}
         />
       ))}
