@@ -7,7 +7,7 @@ export enum Role {
   PAWN = 'pawn', // 兵/卒
   ROOK = 'rook', // 車/俥
   KNIGHT = 'knight', // 馬/傌
-  BISHOP = 'bishop', // 象/相
+  ELEPHANT = 'elephant', // 象/相
   ADVISOR = 'advisor', // 士/仕
   KING = 'king', // 將/帥
   CANNON = 'cannon' // 砲/炮
