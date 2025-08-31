@@ -3,7 +3,7 @@ import ChessBoard from './components/ChessBoard'
 import { INITIAL_CHESS_LIST, ROLE_MAP } from './constants'
 import { Chess, Player } from './types'
 import { Button } from '@renderer/components/ui/button'
-import { checkChessRule } from './utils/chessRule'
+import { checkIsChessMovable } from './utils/checkIsChessMovable'
 
 function App(): React.JSX.Element {
   const [currentPlayer, setCurrentPlayer] = useState<Player>(Player.RED)
@@ -39,7 +39,7 @@ function App(): React.JSX.Element {
 
       // 檢查是否符合規則
       if (
-        !checkChessRule({
+        !checkIsChessMovable({
           currentChess: selectedChess,
           targetPosition: position,
           targetChess,
