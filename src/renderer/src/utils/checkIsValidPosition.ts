@@ -1,44 +1,45 @@
 import { Chess, Role } from '@renderer/types'
 import { checkHasMiddleChess } from './checkHasMiddleChess'
-import { checkIsHorsePosition } from './checkIsHorsePosition'
+import { checkIsHorseMovable } from './checkIsHorseMovable'
 import { checkIsHorseBlocked } from './checkIsHorseBlocked'
-import { checkIsElephantPosition } from './checkIsElephantPosition'
+import { checkIsElephantMovable } from './checkIsElephantMovable'
 import { checkIsElephantBlocked } from './checkIsElephantBlocked'
 import { checkIsOnlyOneChessBetween } from './checkIsOnlyOneChessBetween'
-import { checkIsAdvisorPosition } from './checkIsAdvisorPosition'
+import { checkIsAdvisorMovable } from './checkIsAdvisorMovable'
+import { checkIsKingMovable } from './checkIsKingMovable'
+import { checkIsStraightLine } from './checkIsStraightLine'
+import { checkIsPawnMovable } from './checkIsPawnMovable'
 
-interface CheckIsChessMovableProps {
+interface CheckIsValidPositionProps {
   currentChess: Chess
   targetPosition: Chess['position']
   targetChess?: Chess
   chessList: Chess[]
 }
 
-// 檢查棋子規則
-// 已經排除了該位置是自己的棋子
-export const checkIsChessMovable = ({
+export const checkIsValidPosition = ({
   currentChess,
   targetPosition,
   targetChess,
   chessList
-}: CheckIsChessMovableProps): boolean => {
+}: CheckIsValidPositionProps): boolean => {
   const { role, position, player: currentPlayer } = currentChess
 
   switch (role) {
     case Role.ROOK:
-      if (position.x !== targetPosition.x && position.y !== targetPosition.y) {
+      if (!checkIsStraightLine({ position, targetPosition })) {
         return false
       }
 
       return !checkHasMiddleChess({ position, targetPosition, chessList })
     case Role.HORSE:
-      if (!checkIsHorsePosition({ position, targetPosition })) {
+      if (!checkIsHorseMovable({ position, targetPosition })) {
         return false
       }
 
       return !checkIsHorseBlocked({ position, targetPosition, chessList })
     case Role.CANNON:
-      if (position.x !== targetPosition.x && position.y !== targetPosition.y) {
+      if (!checkIsStraightLine({ position, targetPosition })) {
         return false
       }
 
@@ -48,16 +49,16 @@ export const checkIsChessMovable = ({
 
       return !checkHasMiddleChess({ position, targetPosition, chessList })
     case Role.ELEPHANT:
-      if (!checkIsElephantPosition({ position, targetPosition, player: currentPlayer })) {
+      if (!checkIsElephantMovable({ position, targetPosition, player: currentPlayer })) {
         return false
       }
 
       return !checkIsElephantBlocked({ position, targetPosition, chessList })
     case Role.ADVISOR:
-      return checkIsAdvisorPosition({ position, targetPosition, player: currentPlayer })
+      return checkIsAdvisorMovable({ position, targetPosition, player: currentPlayer })
     case Role.KING:
-      return true
+      return checkIsKingMovable({ position, targetPosition, player: currentPlayer })
     case Role.PAWN:
-      return true
+      return checkIsPawnMovable({ position, targetPosition, player: currentPlayer })
   }
 }

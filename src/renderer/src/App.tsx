@@ -3,7 +3,7 @@ import ChessBoard from './components/ChessBoard'
 import { INITIAL_CHESS_LIST, ROLE_MAP } from './constants'
 import { Chess, Player } from './types'
 import { Button } from '@renderer/components/ui/button'
-import { checkIsChessMovable } from './utils/checkIsChessMovable'
+import { checkIsValidPosition } from './utils/checkIsValidPosition'
 
 function App(): React.JSX.Element {
   const [currentPlayer, setCurrentPlayer] = useState<Player>(Player.RED)
@@ -39,7 +39,7 @@ function App(): React.JSX.Element {
 
       // 檢查是否符合規則
       if (
-        !checkIsChessMovable({
+        !checkIsValidPosition({
           currentChess: selectedChess,
           targetPosition: position,
           targetChess,
@@ -49,9 +49,10 @@ function App(): React.JSX.Element {
         return
       }
 
+      // 檢查是否為禁手，王不見王，如果這個移動會導致王見面則不能移動
+
       // 更新棋子位置
       const newChessList = chessList
-
         // 如果該位置有棋子，則移除該棋子
         .filter((chess) => !targetChess || chess.id !== targetChess.id)
         .map((chess) => {

@@ -1,14 +1,14 @@
 import { Chess } from '@renderer/types'
 
-interface CheckIsHorsePositionProps {
+interface CheckIsHorseMovableProps {
   position: Chess['position']
   targetPosition: Chess['position']
 }
 
-export const checkIsHorsePosition = ({
+export const checkIsHorseMovable = ({
   position,
   targetPosition
-}: CheckIsHorsePositionProps): boolean => {
+}: CheckIsHorseMovableProps): boolean => {
   return (
     (Math.abs(position.x - targetPosition.x) === 2 &&
       Math.abs(position.y - targetPosition.y) === 1) ||

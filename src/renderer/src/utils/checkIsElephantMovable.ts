@@ -1,16 +1,16 @@
 import { Chess, Player } from '@renderer/types'
 
-interface CheckIsElephantPositionProps {
+interface CheckIsElephantMovableProps {
   position: Chess['position']
   targetPosition: Chess['position']
   player: Player
 }
 
-export const checkIsElephantPosition = ({
+export const checkIsElephantMovable = ({
   position,
   targetPosition,
   player
-}: CheckIsElephantPositionProps): boolean => {
+}: CheckIsElephantMovableProps): boolean => {
   if (player === Player.RED) {
     if (targetPosition.y < 5) {
       return false
